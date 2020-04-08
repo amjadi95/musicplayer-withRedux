@@ -1,28 +1,91 @@
+//"https://irsv.upmusics.com/99/Hamid%20Askari%20%7C%20Hezar%20Daraje%20(128).mp3"
+import sound1 from '../../../../03_Verano_Porteño.mp3';
+import sound2 from '../../../../04_Tango.mp3';
+import sound3 from '../../../../10_Scenes_from_Summer.mp3';
+
 const initialState = {
-    song_currentTime: 0,
-    song_duration: 0,
-    Change_currentTime: false,
-    song_newCurrentTime: 0
+    nowPlaying_has_event: false,
+    song_isShuffle: false,
+    song_isPlaying: false,
+    song_listLength: 3,
+    song_listIndex: 0,
+    song_isChange_currentSong: false,
+    song_repeat: "none",
+    song_list: [sound1, sound2, sound3]
+
 }
 const now_playing_reducer = (state = initialState, action) => {
     const newState = { ...state };
+    newState.nowPlaying_has_event = true;
     switch (action.type) {
-        case "SONG_CURRENT_TIME": {
-            newState.song_currentTime = action.payload.song_currentTime;
+
+        case "SONG_IS_PLAYING": {
+            newState.song_isPlaying = action.payload.isPlaying;
             break;
         }
-        case "SONG_DURATION": {
-            newState.song_duration = action.payload.song_duration;
+        case "SONG_ENDED": {
+            if (newState.song_list != null && newState.song_list != []) {
+
+                if (newState.song_repeat == "all") {
+                    if (newState.song_list.length - 1 == newState.song_listIndex) {
+                        newState.song_listIndex = 0;
+                    }
+                    else {
+                        newState.song_listIndex++;
+                    }
+                }
+                else if (newState.song_repeat == "none") {
+                    if (newState.song_list.length - 1 == newState.song_listIndex) {
+                        newState.song_isPlaying = false;
+                        newState.nowPlaying_has_event = false;
+                        break;
+                    }
+                    else {
+                        newState.song_listIndex++;
+                    }
+                }
+                newState.song_isChange_currentSong = true;
+            }
             break;
         }
-        case "SONG_SET_CURRENT_TIME": {
-            newState.song_newCurrentTime = action.payload.song_newCurrentTime;
+        case "SONG_NEXT": {
+            if (newState.song_list != null && newState.song_list != []) {
+                if (action.payload.next == 1) {
+                    if (newState.song_list.length - 1 != newState.song_listIndex) {
+                        newState.song_listIndex++;
+                    }
+                    else if (newState.song_repeat == "all") {
+                        if (newState.song_list.length - 1 == newState.song_listIndex) {
+                            newState.song_listIndex = 0;
+                        }
+                    }
+
+                }
+                else if (action.payload.next == -1 && newState.song_listIndex > 0) {
+                    newState.song_listIndex--;
+
+                }
+                newState.song_isChange_currentSong = true;
+            }
             break;
         }
-        case "SONG_CHANGE_CURRENT_TIME": {
-            newState.Change_currentTime = action.payload.isChange_currentTime;
+        case "SONG_IS_SHUFFLE": {
+            newState.song_isShuffle = action.payload.isShuffle;
             break;
         }
+        case "SONG_IS_REPEAT": {
+            newState.song_repeat = action.payload.repeat;
+            break;
+        }
+        case "SONG_NO_CHANGE_CURRENT_SONG": {
+            newState.song_isChange_currentSong = false;
+            break;
+        }
+        case "NOWPLAYING_EVENT_DONE": {
+            newState.nowPlaying_has_event = false;
+            break;
+        }
+
     }
 
     return newState;

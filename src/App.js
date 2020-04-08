@@ -8,14 +8,19 @@ function App() {
   return (
     <div className="mainframe fx fxdc ">
       <div className="menu-view fx fxdr">
-        <div className="menu-container border border-danger  fx-cc">menu
+        <div className="menu-container  fx-cc">menu
         <SideMenu></SideMenu>
         </div>
-        <div className="mainview-container border border-secondary fx-cc"> view</div>
+        <div className="mainview-container fx-cc"> view</div>
       </div>
 
-      <div className="nowplaying-container fx border border-light fx-cc">
-        <NowPlaying></NowPlaying>
+
+      <NowPlaying></NowPlaying>
+
+      <div className="menu-container-mobile fx fxdr faic fjcse">
+        <button className="home-tab">Home</button>
+        <button className="search-tab">Search</button>
+
       </div>
     </div>
   );

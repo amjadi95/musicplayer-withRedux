@@ -1,28 +1,43 @@
 
 
-export const song_currentTime_action = (time) => {
+export const song_isPlaying_action = (play) => {
     return {
-        type: "SONG_CURRENT_TIME",
-        payload: { song_currentTime: time }
+        type: "SONG_IS_PLAYING",
+        payload: { isPlaying: play }
     }
 }
-export const song_duration_action = (time) => {
+export const song_next_action = (number) => {
     return {
-        type: "SONG_DURATION",
-        payload: { song_duration: time }
+        type: "SONG_NEXT",
+        payload: { next: number }
+    }
+}
+export const song_isShuffle_action = (shuffle) => {
+    return {
+        type: "SONG_IS_SHUFFLE",
+        payload: { isShuffle: shuffle }
     }
 }
 
-export const song_set_current_time_action = (time) => {
+export const song_isRepeat_action = (repeat) => {
     return {
-        type: "SONG_SET_CURRENT_TIME",
-        payload: { song_newCurrentTime: time }
+        type: "SONG_IS_REPEAT",
+        payload: { repeat: repeat }
     }
 }
-
-export const song_Change_currentTime_action = (isChange) => {
+export const song_noChange_currentSong = () => {
     return {
-        type: "SONG_CHANGE_CURRENT_TIME",
-        payload: { isChange_CurrentTime: isChange }
+        type: "SONG_NO_CHANGE_CURRENT_SONG",
+
+    }
+}
+export const nowPlaying_event_done = () => {
+    return {
+        type: "NOWPLAYING_EVENT_DONE"
+    }
+}
+export const song_ended_action = () => {
+    return {
+        type: "SONG_ENDED"
     }
 }
