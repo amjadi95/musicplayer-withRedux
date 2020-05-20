@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NowPlaying from './components/mainComponents/nowPlaying/nowPlaying.jsx';
-import SideMenu from './components/mainComponents/menu/menu.jsx';
-import MainView from './components/mainComponents/mainView/mainView';
+import NowPlaying from './components/nowPlaying/nowPlaying.jsx';
+import SideMenu from './components/menu/menu.jsx';
+import MainView from './components/mainView/mainView';
 import { useSelector, useDispatch } from "react-redux";
 function App() {
   return (

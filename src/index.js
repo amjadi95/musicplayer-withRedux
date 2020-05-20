@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import { createStore } from 'redux';
 
-import now_playing_reducer from './components/mainComponents/nowPlaying/reducers/nowplaying_reducers';
+import now_playing_reducer from './components/nowPlaying/reducers/nowplaying_reducers';
 export const store = createStore(now_playing_reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

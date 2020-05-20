@@ -1,7 +1,7 @@
 //"https://irsv.upmusics.com/99/Hamid%20Askari%20%7C%20Hezar%20Daraje%20(128).mp3"
-import sound1 from '../../../../03_Verano_Porteño.mp3';
-import sound2 from '../../../../04_Tango.mp3';
-import sound3 from '../../../../10_Scenes_from_Summer.mp3';
+import sound1 from '../../../03_Verano_Porteño.mp3';
+import sound2 from '../../../04_Tango.mp3';
+import sound3 from '../../../10_Scenes_from_Summer.mp3';
 
 const initialState = {
     nowPlaying_has_event: false,
