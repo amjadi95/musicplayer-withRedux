@@ -5,6 +5,7 @@ import NowPlaying from './components/nowPlaying/nowPlaying.jsx';
 import SideMenu from './components/menu/sidemenu.jsx';
 import MainView from './components/mainView/mainView';
 import MobileMenu from './components/menu/mobileMenu';
+import Queue from "./components/nowPlaying/queue";
 import { useSelector, useDispatch } from "react-redux";
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
 
       <NowPlaying></NowPlaying>
       <MobileMenu />
-
+      <Queue />
     </div>
   );
 }

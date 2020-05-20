@@ -14,6 +14,7 @@ import {
   nowPlaying_event_done,
   song_ended_action,
   song_isPlaying_action,
+  showQueue_action,
 } from "./actions/nowplaying_actions.js";
 import Controller from "./playing_controller";
 import Mini_progressBar from "./mini_progressBar.jsx";
@@ -35,13 +36,13 @@ class NowPlaying extends Component {
     );
     this.audio.ontimeupdate = this.updateProgressBar;
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth >= 768) {
         this.onChangeStyle(false);
       }
     });
   }
   resizeHandler = () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth >= 768) {
       this.onChangeStyle(false);
     }
   };
@@ -107,7 +108,7 @@ class NowPlaying extends Component {
     // let mobileViewStyleDisplay =
     //   window.innerWidth < 768 ? { display: "none " } : {};
     // console.log(window.innerWidth);
-    let ss = "SONG TITLE IS HERE";
+
     let mystyle = {
       nowplaying_desktop: { display: "none" },
       nowplaying_mobile: { display: "flex" },
@@ -146,13 +147,13 @@ class NowPlaying extends Component {
               duration={this.state.duration}
             ></Mini_progressBar>
             <div
-              className="song-info-mobile fx fxdr"
+              className="song-info-mobile fx fxdr faic"
               onClick={() => {
                 this.onChangeStyle(true);
               }}
             >
-              <div className="song-title fx faic">{ss}</div>
-              <div className="song-artist fx-cc sub-text">.ARTIST</div>
+              <div className="song-title ">SONG TITLE IS HERE</div>
+              <div className="song-artist  sub-text">.ARTIST</div>
             </div>
             <div className="control-mobile fx fxdr fjcsb faic">
               <button
@@ -167,7 +168,12 @@ class NowPlaying extends Component {
                   <FontAwesomeIcon icon={faPlay} />
                 )}
               </button>
-              <div className="nowplaying-option-item queue-icon sub-text">
+              <div
+                className="nowplaying-option-item queue-icon sub-text"
+                onClick={() => {
+                  this.props.showQueue(true);
+                }}
+              >
                 <FontAwesomeIcon icon={faList} />
               </div>
             </div>
@@ -205,8 +211,8 @@ class NowPlaying extends Component {
                 />
               </div>
               <div className="song-info fx fxdc ">
-                <div className="song-title fx-cc">SONG TITLE</div>
-                <div className="song-artist fx-cc sub-text">ARTIST</div>
+                <div className="song-title ">SONG TITLE</div>
+                <div className="song-artist  sub-text">ARTIST</div>
               </div>
             </div>
 
@@ -219,7 +225,12 @@ class NowPlaying extends Component {
               ></ProgressBar>
             </div>
             <div className="nowplaying-option fx fxdr ">
-              <div className="nowplaying-option-item queue-icon sub-text">
+              <div
+                className="nowplaying-option-item queue-icon sub-text"
+                onClick={() => {
+                  this.props.showQueue(true);
+                }}
+              >
                 <FontAwesomeIcon icon={faList} />
               </div>
               <div className="nowplaying-option-item like-icon sub-text">
@@ -259,6 +270,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     song_isPlaying: (isplaying) => {
       dispatch(song_isPlaying_action(!isplaying));
+    },
+    showQueue: (isshow) => {
+      dispatch(showQueue_action(isshow));
     },
   };
 };

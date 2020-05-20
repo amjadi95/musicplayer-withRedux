@@ -47,3 +47,10 @@ export const song_changeTrack_action = (list, id) => {
         payload: { id: id, list: list }
     }
 }
+export const showQueue_action = (isshow) => {
+    return {
+        type: "SHOW_QUEUE",
+        payload: { isShow: isshow }
+
+    }
+}
