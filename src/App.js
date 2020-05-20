@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import NowPlaying from './components/mainComponents/nowPlaying/nowPlaying.jsx';
 import SideMenu from './components/mainComponents/menu/menu.jsx';
+import MainView from './components/mainComponents/mainView/mainView';
 import { useSelector, useDispatch } from "react-redux";
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <div className="menu-container  fx-cc">menu
         <SideMenu></SideMenu>
         </div>
-        <div className="mainview-container fx-cc"> view</div>
+        <div className="mainview-container fx-cc">
+          <MainView></MainView>
+        </div>
       </div>
 
 

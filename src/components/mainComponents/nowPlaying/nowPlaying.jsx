@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import ProgressBar from "./progressBar.jsx";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faList,
+  faHeart,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   song_noChange_currentSong,
   nowPlaying_event_done,
@@ -8,6 +16,7 @@ import {
   song_isPlaying_action,
 } from "./actions/nowplaying_actions.js";
 import Controller from "./playing_controller";
+import Mini_progressBar from "./mini_progressBar.jsx";
 
 class NowPlaying extends Component {
   constructor(props) {
@@ -25,7 +34,17 @@ class NowPlaying extends Component {
       this.props.data.song_list[this.props.data.song_listIndex]
     );
     this.audio.ontimeupdate = this.updateProgressBar;
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        this.onChangeStyle(false);
+      }
+    });
   }
+  resizeHandler = () => {
+    if (window.innerWidth > 768) {
+      this.onChangeStyle(false);
+    }
+  };
   manager = () => {
     let data = this.props.data;
 
@@ -84,6 +103,7 @@ class NowPlaying extends Component {
     if (this.props.data.nowPlaying_has_event) {
       this.manager();
     }
+
     // let mobileViewStyleDisplay =
     //   window.innerWidth < 768 ? { display: "none " } : {};
     // console.log(window.innerWidth);
@@ -121,6 +141,10 @@ class NowPlaying extends Component {
             className="nowplaying-mobile "
             style={is_show_style ? mystyle.nowplaying_mobile : {}}
           >
+            <Mini_progressBar
+              currentTime={this.state.currentTime}
+              duration={this.state.duration}
+            ></Mini_progressBar>
             <div
               className="song-info-mobile fx fxdr"
               onClick={() => {
@@ -137,10 +161,14 @@ class NowPlaying extends Component {
                   this.props.song_isPlaying(this.props.data.song_isPlaying);
                 }}
               >
-                {this.props.data.song_isPlaying ? "pas" : "ply"}
+                {this.props.data.song_isPlaying ? (
+                  <FontAwesomeIcon icon={faPause} />
+                ) : (
+                  <FontAwesomeIcon icon={faPlay} />
+                )}
               </button>
               <div className="nowplaying-option-item queue-icon sub-text">
-                Q
+                <FontAwesomeIcon icon={faList} />
               </div>
             </div>
           </div>
@@ -156,7 +184,7 @@ class NowPlaying extends Component {
                 this.onChangeStyle(false);
               }}
             >
-              dwn
+              <FontAwesomeIcon icon={faChevronDown} />
             </button>
             <div className="song-information fx ">
               <div
@@ -192,10 +220,10 @@ class NowPlaying extends Component {
             </div>
             <div className="nowplaying-option fx fxdr ">
               <div className="nowplaying-option-item queue-icon sub-text">
-                Q
+                <FontAwesomeIcon icon={faList} />
               </div>
               <div className="nowplaying-option-item like-icon sub-text">
-                {"<3"}
+                <FontAwesomeIcon icon={faHeart} />
               </div>
             </div>
           </div>

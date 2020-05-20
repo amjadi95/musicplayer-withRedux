@@ -34,14 +34,14 @@ const ProgressBar = (props) => {
             props.onChangeCurrentTime(
               parseInt(
                 -(event.target.offsetWidth / 2 - event.nativeEvent.offsetX) +
-                  props.currentTime
+                  currentTime
               )
             );
           } else {
             props.onChangeCurrentTime(
               parseInt(
                 (event.nativeEvent.offsetX / this_element.offsetWidth) *
-                  props.duration
+                  duration
               )
             );
           }
