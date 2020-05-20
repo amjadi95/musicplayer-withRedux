@@ -1,8 +1,15 @@
 import React from "react";
 import ListBox from "../listBox.jsx";
 import Song from "../../song.jsx";
+import { useSelector } from "react-redux";
 const Artist = (props) => {
-  let listbox = [1, 2, 3, 4, 5];
+  let listbox = [1, 2, 3];
+
+  const isPlaying = useSelector((state) => state.song_isPlaying);
+  const listindex = useSelector((state) => state.song_listIndex);
+  const list = useSelector((state) => state.song_list);
+  let currentSong = list[listindex];
+
   return (
     <div className="artist">
       <div className="artist-img"></div>
@@ -23,8 +30,14 @@ const Artist = (props) => {
         <div className="artist-songs">
           <h2 className="artist-songs-title fx">Songs</h2>
           <div className="artist-songs-list ">
-            {listbox.map((i) => (
-              <Song></Song>
+            {list.map((item) => (
+              <Song
+                key={item.id}
+                songId={item.id}
+                playing={isPlaying}
+                currentSong={currentSong}
+                list={list}
+              ></Song>
             ))}
           </div>
         </div>

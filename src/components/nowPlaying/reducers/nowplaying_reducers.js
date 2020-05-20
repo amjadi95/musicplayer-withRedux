@@ -11,14 +11,29 @@ const initialState = {
     song_listIndex: 0,
     song_isChange_currentSong: false,
     song_repeat: "none",
-    song_list: [sound1, sound2, sound3]
+    song_list: [{ id: 1, src: sound1, duration: 233 }, { id: 2, src: sound2, duration: 278 }, { id: 3, src: sound3, duration: 228 }]
 
 }
 const now_playing_reducer = (state = initialState, action) => {
     const newState = { ...state };
     newState.nowPlaying_has_event = true;
     switch (action.type) {
+        case "SONG_TRACK_CHANGED": {
 
+            const newList = action.payload.list;
+            if (newState.song_list != newList) {
+                newState.song_list = newList;
+                newState.song_listLength = newList.length;
+            }
+            for (let i = 0; i < newList.length; i++) {
+                if (newList[i].id == action.payload.id) {
+                    newState.song_listIndex = i;
+                }
+            }
+            newState.song_isChange_currentSong = true;
+            newState.song_isPlaying = true;
+            break;
+        }
         case "SONG_IS_PLAYING": {
             newState.song_isPlaying = action.payload.isPlaying;
             break;

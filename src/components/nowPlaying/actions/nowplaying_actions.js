@@ -41,3 +41,9 @@ export const song_ended_action = () => {
         type: "SONG_ENDED"
     }
 }
+export const song_changeTrack_action = (list, id) => {
+    return {
+        type: "SONG_TRACK_CHANGED",
+        payload: { id: id, list: list }
+    }
+}

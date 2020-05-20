@@ -31,7 +31,7 @@ class NowPlaying extends Component {
 
   componentDidMount() {
     this.audio = new Audio(
-      this.props.data.song_list[this.props.data.song_listIndex]
+      this.props.data.song_list[this.props.data.song_listIndex].src
     );
     this.audio.ontimeupdate = this.updateProgressBar;
     window.addEventListener("resize", () => {
@@ -60,7 +60,7 @@ class NowPlaying extends Component {
     }
     this.audio = null;
     this.audio = new Audio(
-      this.props.data.song_list[this.props.data.song_listIndex]
+      this.props.data.song_list[this.props.data.song_listIndex].src
     );
 
     this.audio.ontimeupdate = this.updateProgressBar;
@@ -246,7 +246,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     noChange_currentSong: () => {
       dispatch(song_noChange_currentSong());
@@ -261,6 +261,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(song_isPlaying_action(!isplaying));
     },
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NowPlaying);

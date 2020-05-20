@@ -190,7 +190,7 @@ code {
 }
 .progress-Bar {
   width: 100%;
-  height: 5px;
+  height: 3px;
   background-color: #676767;
   border-radius: 10px;
   position: relative;
@@ -229,7 +229,7 @@ code {
   opacity: 0;
   position: absolute;
   right: -3px;
-  top: -3px;
+  top: -4px;
   width: 11px;
   height: 11px;
   background-color: white;
@@ -447,12 +447,37 @@ code {
   background-color: #3535358a;
 }
 
+.song:hover .song-title,
+.song:hover .song-duration {
+  color: #4daeff !important;
+  transition: 0.6s;
+}
+.song:hover .song-status-icon path,
+.song:hover .song-status-icon,
+.song-isplaying .song-status-icon,
+.song-isplaying .song-status-icon path {
+  display: none;
+}
+.song-isplaying .song-status-hover path,
+.song-isplaying .song-title,
+.song-isplaying .song-duration {
+  color: #4daeff !important;
+}
+.song-status-hover {
+  display: none;
+}
+.song:hover .song-status-hover,
+.song-isplaying .song-status-hover {
+  display: flex;
+}
+
 .song-img {
   width: 40px;
   height: 40px;
 }
 
-.song-status-icon {
+.song-status-icon,
+.song-status-hover {
   width: 15px;
   height: 100%;
 }
