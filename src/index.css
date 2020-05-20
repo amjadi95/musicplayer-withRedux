@@ -94,6 +94,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+button:focus {
+  outline: unset !important;
+}
 .sub-text {
   color: #bababa !important;
 }
@@ -115,6 +118,40 @@ code {
   align-items: stretch;
   background: linear-gradient(190deg, #1e5787, #121212 40%);
 }
+.sidemenu-container {
+  min-width: 180px;
+}
+.sidemenu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 30px 15px;
+}
+.sidemenu-item {
+  display: flex;
+  margin: 5px 0;
+  width: 100%;
+  padding: 5px;
+}
+.sidemenu-item:hover {
+  cursor: pointer;
+}
+.sidemenu-devider {
+  font-size: 14px;
+  margin-top: 20px !important;
+}
+.sidemenu-item span:nth-child(1) {
+  margin-right: 15px;
+}
+.sidemenu-item span,
+.sidemenu-item path {
+  color: #d5d5d5 !important;
+}
+.sidemenu-item:hover span,
+.sidemenu-item:hover path {
+  color: white !important;
+}
 .menu-container {
   max-width: 200px;
   min-width: 200px;
@@ -133,15 +170,16 @@ code {
   border-top: 1px solid black;
   z-index: 1015;
 }
-.menu-container-mobile button {
-  background-color: unset;
-  border: none;
-  width: 70px;
-  height: 100%;
+,
+.mobilemenu-item span,
+.mobilemenu-item path {
+  color: #d5d5d5 !important;
+}
+.mobilemenu-item:hover path {
+  color: white !important;
 }
 .menu-container-mobile button:hover {
   background-color: #8080802e;
-  outline: none;
 }
 .mainview-container {
   height: 100%;
@@ -219,8 +257,11 @@ code {
   background-color: #bababa;
   border-radius: 10px;
 }
+.mini-progress-bar .seeker {
+  background-color: #33aeff;
+}
 .progress-bar-container:hover .seeker {
-  background-color: #0063b5;
+  background-color: #33aeff;
 }
 .progress-bar-container:hover .seeker-thumb {
   opacity: 1;
@@ -246,9 +287,7 @@ code {
   margin: 5px 8px;
   background-color: unset;
 }
-.music-controller:focus {
-  outline: unset;
-}
+
 .music-controller:hover,
 .music-controller:hover path {
   color: #4daeff !important;
@@ -361,9 +400,7 @@ code {
   background: #00000017;
   border-radius: 5px;
 }
-.nowplaying-hide-btn:focus {
-  outline: unset;
-}
+
 .mainview {
   width: 100%;
   height: 100%;
@@ -510,7 +547,7 @@ code {
   .nowplaying-mobile {
     display: flex;
   }
-  .menu-container {
+  .sidemenu-container {
     display: none;
   }
   .menu-container-mobile {
@@ -582,5 +619,8 @@ code {
   .controller .music-controller {
     width: 30px;
     height: 30px;
+  }
+  .nowplaying-option-item.queue-icon {
+    margin: 0 0 0 4px;
   }
 }
